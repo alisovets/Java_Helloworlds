@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<faces-config version="2.0" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>index</from-outcome>
+			<to-view-id>/index.xhtml</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>user_login</from-outcome>
+			<to-view-id>/login.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>welcome</from-outcome>
+			<to-view-id>/welcome.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>create_client</from-outcome>
+			<to-view-id>/newclient.xhtml</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>create_order</from-outcome>
+			<to-view-id>/neworder.xhtml</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>client_list</from-outcome>
+			<to-view-id>/client_list.xhtml</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>edit_client</from-outcome>
+			<to-view-id>/editclient.xhtml</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>car_list</from-outcome>
+			<to-view-id>/car_list.xhtml</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>order_list</from-outcome>
+			<to-view-id>/rentorder_list.xhtml</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>select_car</from-outcome>
+			<to-view-id>/select_car_list.xhtml</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>select_client</from-outcome>
+			<to-view-id>/select_client_list.xhtml</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>select_order</from-outcome>
+			<to-view-id>/select_rentorder_list.xhtml</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>select_bill</from-outcome>
+			<to-view-id>/select_bill_list.xhtml</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>bill_list</from-outcome>
+			<to-view-id>/bill_list.xhtml</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>create_bill</from-outcome>
+			<to-view-id>/newbill.xhtml</to-view-id>
+		</navigation-case>
+		
+		
+
+	</navigation-rule>
+
+
+	<application>
+		<resource-bundle>
+			<base-name>messages.messages</base-name>
+			<var>msgs</var>
+		</resource-bundle>
+	</application>
+
+
+</faces-config>
+ 

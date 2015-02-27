@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<h:column>
+		<f:facet name="header">
+			<h:outputText id="order" value="#{msgs.billOrder}" />
+		</f:facet>
+                #{item.rentOrder.rentOrderId}
+            </h:column>
+
+	<h:column>
+		<f:facet name="header">
+			<h:outputText id="client" value="#{msgs.billClientName}" />
+		</f:facet>
+                #{item.rentOrder.client.name}
+            </h:column>
+
+	<h:column>
+		<f:facet name="header">
+			<h:outputText id="car" value="#{msgs.billCarName}" />
+		</f:facet>
+                #{item.rentOrder.car.name}
+            </h:column>
+
+	<h:column>
+		<f:facet name="header">
+			<h:outputText id="summHeader" value="#{msgs.billSumm}" />
+		</f:facet>
+		<h:outputText id="summ" value="#{item.summ}">
+			<f:converter converterId="IntegerCurrencyConverter" />
+		</h:outputText>
+	</h:column>
+
+	<h:column>
+		<f:facet name="header">
+			<h:outputText id="status" value="#{msgs.billStatus}" />
+		</f:facet>
+                #{item.status}
+            </h:column>
+
+	<h:column>
+		<f:facet name="header">
+			<h:outputText id="payDate" value="#{msgs.billPayDate}" />
+		</f:facet>
+		<h:outputText value="#{item.payDate}">
+			<f:convertDateTime pattern="dd.MM.yyyy" />
+		</h:outputText>
+
+	</h:column>
+
+	<h:column>
+		<f:facet name="header">
+			<h:outputText id="approved" value="#{msgs.billApproved}" />
+		</f:facet>
+		<h:outputText id="approvedValue" value="+"
+			rendered="#{(item.approved == 1)}" />
+	</h:column>
+
+</ui:composition>

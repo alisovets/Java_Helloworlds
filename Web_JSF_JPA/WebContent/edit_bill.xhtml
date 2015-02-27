@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='windows-1251' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+
+	<h:head>
+		<title>Edit bill</title>
+	</h:head>
+	<h:body>
+		<ui:composition template="templates/main_template.xhtml">
+			<ui:define name="windowTitle">
+           #{msgs.editBillTitle}
+         </ui:define>
+
+			<ui:define name="content">
+				<p>
+					<h:outputLabel id="messageLabel" value="#{bill.message} " style="color:red" />
+				</p>
+
+				<h:form>
+					<h:panelGrid columns="3">
+
+						<h:outputLabel id="billIdLabel" value="#{msgs.billId}: " />
+						<h:outputText id="billId" value="#{bill.bill.billId} " />
+						<h:outputLabel />
+
+						<h:outputLabel id="orderLabel" value="#{msgs.billOrder}: " />
+						<h:outputText id="order"
+							value="#{bill.bill.rentOrder.rentOrderId} " />
+						<h:commandButton value="#{msgs.selectOrderButton}"
+							action="#{bill.selectOrder}" />
+
+						<h:outputLabel id="clientLabel" value="#{msgs.billClientName}: " />
+						<h:outputText id="client"
+							value="#{bill.bill.rentOrder.client.name} " />
+						<h:outputLabel />
+
+						<h:outputLabel id="carLabel" value="#{msgs.billCarName}: " />
+						<h:outputText id="car" value="#{bill.bill.rentOrder.car.name}" />
+						<h:outputLabel />
+
+						<h:outputLabel id="payDateLabel" value="#{msgs.billPayDate}: " />
+						<h:inputText id="payDate" value="#{bill.bill.payDate}"
+							converterMessage="#{msgs.dateConverterMessage}">
+							<f:converter converterId="CustomDateConverter" />
+						</h:inputText>
+						<h:message for="payDate" style="color:red" />
+
+						<h:outputLabel id="sumLabel" value="#{msgs.billSumm}: " />
+						<h:inputText id="summ" value="#{bill.bill.summ}"
+							converterMessage="#{msgs.currencyConverterMessage}"
+							validatorMessage="#{msgs.currencyValidatorMessage}">
+							<f:validator validatorId="CurrencyValidator" />
+							<f:converter converterId="IntegerCurrencyConverter" />
+						</h:inputText>
+						<h:message for="summ" style="color:red" />
+
+
+						<h:outputLabel id="statusLabel" value="#{msgs.billStatus}: " />
+						<h:selectOneMenu id="status" value="#{bill.bill.status}">
+							<f:selectItems value="#{bill.statusValues}" var="status"
+								itemValue="#{status}" itemLabel="#{status.toString()}" />
+						</h:selectOneMenu>
+						<h:outputLabel />
+
+						<h:outputLabel id="approvedLabel" value="#{msgs.billApproved}: " />
+						<h:selectBooleanCheckbox value="#{bill.approved}" />
+						<h:outputLabel />
+
+					</h:panelGrid>
+
+
+					<p>
+						<h:commandButton value="#{msgs.saveBillButton}"
+							action="#{bill.save}" />
+						<h:commandButton value="#{msgs.cancelButton}"
+							action="#{bill.cancel}" immediate="true" />
+					</p>
+
+				</h:form>
+			</ui:define>
+		</ui:composition>
+	</h:body>
+</html>

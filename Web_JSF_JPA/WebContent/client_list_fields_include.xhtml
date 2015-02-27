@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<h:column>
+		<f:facet name="header">
+			<h:outputText id="clientName" value="#{msgs.clientName} " />
+		</f:facet>
+                #{item.name}
+            </h:column>
+	<h:column>
+		<f:facet name="header">
+			<h:outputText id="clientAddress" value="#{msgs.clientAddress}" />
+		</f:facet>
+                #{item.address}
+            </h:column>
+</ui:composition>

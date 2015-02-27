@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='windows-1251' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<title>Cars</title>
+</h:head>
+
+<h:body>
+	<ui:composition template="templates/main_template.xhtml">
+		<ui:define name="windowTitle">
+           #{msgs.carsTitle}
+         </ui:define>
+
+		<ui:define name="content">
+			<h3>
+				<h:outputLabel id="carListTitle" value="#{msgs.carListTitle} " />
+			</h3>
+			<h:form>
+				<h:dataTable value="#{cars.model}" var="item">
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText id="Name" value="#{msgs.carName} " />
+						</f:facet>
+                #{item.name}
+            </h:column>
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText id="model" value="#{msgs.carModel} " />
+						</f:facet>
+                #{item.model}
+            </h:column>
+
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText id="kilometrage" value="#{msgs.kilometrage} " />
+						</f:facet>
+                #{item.kilometrage}
+            </h:column>
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText id="priceLabel" value="#{msgs.carPrice} " />
+						</f:facet>
+						<h:outputText id="price" value="#{item.price}">
+							<f:converter converterId="IntegerCurrencyConverter" />
+						</h:outputText>
+					</h:column>
+
+				</h:dataTable>
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>

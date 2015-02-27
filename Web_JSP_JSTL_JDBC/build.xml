@@ -1,0 +1,98 @@
+<project name="WebApp" default="deploy" basedir=".">
+
+	<property file="build.properties" />
+
+	<property name="src.production" value="src/production" />
+	<property name="src.resources" value="src/res" />
+	<property name="src.production.resources" value="${src.resources}/production" />
+	<property name="src.web.resources" value="${src.production.resources}" />  <!-- /web -->
+	
+	<property name="dir.build" value="build" />
+	<property name="dir.build.production" value="${dir.build}/production" />
+	<property name="dir.build.war" value="${dir.build}/war" />
+	<property name="dir.build.deploy" value="${dir.build}/deploy" />
+
+	<property name="lib.production" value="lib/production" />
+
+	<target name="clean" description="Clean up">
+		<delete dir="${dir.build}" />
+	</target>
+
+
+	<target name="make.dirs" description="Make build dirs" depends="clean">
+		<mkdir dir="${dir.build}" />
+		<mkdir dir="${dir.build.production}" />
+		<mkdir dir="${dir.build.war}" />
+		<mkdir dir="${dir.build.war}/WEB-INF" />
+		<mkdir dir="${dir.build.war}/WEB-INF/classes" />
+		<mkdir dir="${dir.build.deploy}" />
+
+	</target>
+
+	
+	<target name="make.dirs.test" description="Make build dirs for tests" depends="make.dirs">
+		<mkdir dir="${dir.build.test}" />
+	</target>
+
+	<path id="compileClasspath">
+		<fileset dir="lib">
+			<include name="**/**/*.jar" />
+		</fileset>
+	</path>
+
+
+	<target name="compile" description="Compile classes" depends="make.dirs">
+		<javac encoding="utf8" destdir="${dir.build.production}" classpathref="compileClasspath">
+			<src path="${src.production}" />
+		</javac>
+
+		<copy todir="${dir.build.production}">
+			<fileset dir="${src.production}">
+				<include name="**.xml" />
+				<include name="**/**.xml" />
+				<include name="**.properties" />
+			</fileset>
+		</copy>
+	</target>
+
+
+	<target name="prepare.war" description="prepare.war" depends="compile">
+		<delete dir="${dir.build.war}" />
+		<mkdir dir="${dir.build.war}" />
+		<mkdir dir="${dir.build.war}/WEB-INF" />
+		<mkdir dir="${dir.build.war}/WEB-INF/classes" />
+		<mkdir dir="${dir.build.war}/WEB-INF/lib" />
+		<copy todir="${dir.build.war}">
+			<fileset dir="${src.web.resources}/pages" includes="**" />
+		</copy>
+		<copy todir="${dir.build.war}/WEB-INF">
+			<fileset dir="${src.web.resources}/metadata" includes="**" />
+			<!-- <fileset dir="${src.core.resources}" includes="**" /> -->
+		</copy>
+		<copy todir="${dir.build.war}/WEB-INF/lib">
+			<fileset dir="${lib.production}" includes="**" />
+		</copy>
+		<copy todir="${dir.build.war}/WEB-INF/classes">
+			<fileset dir="${dir.build.production}" includes="**" />
+		</copy>
+
+	</target>
+
+	<target name="war" depends="prepare.war">
+		<war destfile="${dir.build.deploy}/${project.name}.war" basedir="${dir.build.war}" webxml="${dir.build.war}/WEB-INF/web.xml" excludes="WEB-INF/web.xml" />
+	</target>
+
+	<taskdef name="deploy" classpath="lib/dev/catalina-ant.jar" classname="org.apache.catalina.ant.DeployTask" />
+	<taskdef name="undeploy" classpath="lib/dev/catalina-ant.jar" classname="org.apache.catalina.ant.UndeployTask" />
+
+	<target name="deploy" depends="war">
+		<deploy url="${tomcat.manager}" username="${tomcat.username}" password="${tomcat.password}" path="/${project.name}" update="true" localWar="${basedir}/build/deploy/${project.name}.war" />
+	</target>
+
+	<target name="undeploy">
+		<undeploy url="${tomcat.manager}" username="${tomcat.username}" password="${tomcat.password}" path="/${project.name}" /> 
+	</target>
+
+	<target name="redeploy" depends="undeploy, deploy"/>
+
+</project>

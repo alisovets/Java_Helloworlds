@@ -1,0 +1,35 @@
+#messages
+
+#en
+ 
+hello.text=hello.
+
+login.incorrect = incorrect login or password!
+login.empty = login is empty!
+password.empty = password is empty!
+ 
+
+#ru
+
+hello.text=Привет
+
+login.incorrect=не верный логин или пароль!
+login.empty=логин пустой!
+password.empty=пароль пустой!
+
+
+#uk
+
+hello.text=Привіт
+
+login.incorrect = не вірний логін або пароль!
+login.empty = логін пустий!
+password.empty = пароль пустий!
+
+
+
+
+
+
+			
+

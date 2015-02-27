@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+
+	<h:head>
+		<title>New client</title>
+	</h:head>
+	<h:body>
+		<ui:composition template="templates/main_template.xhtml">
+			<ui:define name="windowTitle">
+           #{msgs.newClientTitle}
+         </ui:define>
+
+			<ui:define name="content">
+				<p>
+					<h:outputLabel id="messageLabel" value="#{client.message} " />
+				</p>
+
+				<h:form>
+
+					<h:panelGrid columns="3">
+
+						<h:outputLabel id="clientNameLabel" for="clientName"
+							value="#{msgs.name}: " />
+						<h:inputText id="clientName" value="#{client.client.name}"
+							required="true" label="#{msgs.name}"
+							requiredMessage="#{msgs.requiredMessage}"
+							validatorMessage="#{msgs.stringLengthMessage4_127}">>
+					<f:validateLength minimum="4" maximum="127" />
+						</h:inputText>
+						<h:message for="clientName" style="color:red" />
+
+						<h:outputLabel id="clientAdressLabel" for="clientAddress"
+							value="#{msgs.address}: " />
+						<h:inputText id="clientAddress" value="#{client.client.address}"
+							required="true" label="#{msgs.address}"
+							requiredMessage="#{msgs.requiredMessage}"
+							validatorMessage="#{msgs.stringLengthMessage4_127}">
+							<f:validateLength minimum="4" maximum="127" />
+						</h:inputText>
+						<h:message for="clientAddress" style="color:red" />
+
+					</h:panelGrid>
+
+					<p>
+						<h:commandButton value="Create" action="#{client.create}" />
+						<h:commandButton value="#{msgs.cancelButton}"
+							action="#{client.cancel}" immediate="true" />
+					</p>
+
+				</h:form>
+			</ui:define>
+		</ui:composition>
+	</h:body>
+
+</html>

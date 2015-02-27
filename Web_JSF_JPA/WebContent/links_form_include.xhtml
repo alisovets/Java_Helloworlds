@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<h:form>
+
+		<h:commandLink action="#{localeChanger.ukAction}">
+			<h:graphicImage library="images" name="ua_flag.gif"
+				style="border: 0px" />
+		</h:commandLink>
+
+		<h:commandLink action="#{localeChanger.enAction}">
+			<h:graphicImage library="images" name="us_flag.gif"
+				style="border: 0px" />
+		</h:commandLink>
+
+		<h:commandLink action="#{localeChanger.ruAction}">
+			<h:graphicImage library="images" name="ru_flag.gif"
+				style="border: 0px" />
+		</h:commandLink>
+		<p>
+			<h:commandButton value="#{msgs.indexButton}"
+				action="#{index.goIndex}" />
+				
+			<h:commandButton value="#{msgs.carListButton}"
+					action="#{index.goCarList}" />	
+		
+			<h:commandButton value="#{msgs.clientListButton}"
+					action="#{index.goClientList}" />
+					
+			<h:commandButton value="#{msgs.orderListButton}"
+					action="#{index.goOrderList}" />
+					
+			<h:commandButton value="#{msgs.billListButton}"
+					action="#{index.goBillList}" immediate="true"/>				
+		</p>
+		
+	</h:form>
+
+</ui:composition>
