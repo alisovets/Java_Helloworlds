@@ -17,7 +17,7 @@ mvn install
 
 Go to the target directory and input:
 
-java -jar textgame-0.0.1-SNAPSHOT.jar <PATH_TO_JSON_CONFIG>
+java -jar textgame-0.0.1-SNAPSHOT.jar PATH_TO_JSON_CONFIG
 
 For example, if you want to use the test from the project root directory then type:
  
